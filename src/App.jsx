@@ -1,11 +1,12 @@
-import './App.css'
+import './app.css';
+import Facts from "./components/Facts";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello</h1>
+    <div className="facts">
+      <Facts />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
