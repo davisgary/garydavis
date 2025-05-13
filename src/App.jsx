@@ -1,11 +1,8 @@
-import './app.css';
-import Facts from "./components/Facts";
+import Messages from "./components/Messages";
 
 function App() {
   return (
-    <div className="facts">
-      <Facts />
-    </div>
+    <Messages />
   );
 }
 
