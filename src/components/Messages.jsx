@@ -116,7 +116,7 @@ function Messages() {
   }, [charIndex, messageIndex, facts, isVisible, shownFacts, phase]);
 
   return (
-    <div className="container text">
+    <div className="container">
       {currentMessage}
     </div>
   );

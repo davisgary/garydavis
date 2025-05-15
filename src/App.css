@@ -4,9 +4,40 @@
   padding: 5rem 2rem;
 }
 
-.text {
-  font-size: 1.25rem;
-  line-height: 1.55;
-  font-weight: 500;
-  letter-spacing: -0.03em;
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.min-height {
+  min-height: var(--mh-base);
+}
+
+.text-lg {
+  font-size: var(--text-lg);
+  line-height: var(--lh-sm);
+}
+
+.text-sm {
+  font-size: var(--text-sm);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.button {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-primary);
+  color: var(--color-main);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: var(--color-secondary);
 }
