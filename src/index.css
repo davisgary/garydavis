@@ -5,13 +5,12 @@
   --color-primary: #ffffff;
   --color-secondary: #dddddd;
 
-  --text-lg: 2.85rem;
+  --text-lg: 2.55rem;
   --text-base: 1.25rem;
   --text-sm: 1.05rem;
   --lh-base: 1.55;
   --lh-sm: 1.05;
   --ls-base: -0.03em;
-  --mh-base: 60vh;
 }
 
 @media (prefers-color-scheme: light) {

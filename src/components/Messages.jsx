@@ -116,8 +116,10 @@ function Messages() {
   }, [charIndex, messageIndex, facts, isVisible, shownFacts, phase]);
 
   return (
-    <div className="container">
-      {currentMessage}
+    <div className="flex-center">
+      <div className="container">
+        {currentMessage}
+      </div>
     </div>
   );
 }

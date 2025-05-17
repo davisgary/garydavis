@@ -1,17 +1,17 @@
-.container {
-  max-width: 750px;
-  margin: auto;
-  padding: 5rem 2rem;
-}
-
 .flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.min-height {
-  min-height: var(--mh-base);
+.container {
+  width: 100%;
+  max-width: 650px;
+  padding: 10rem 2rem;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .text-lg {
@@ -21,10 +21,6 @@
 
 .text-sm {
   font-size: var(--text-sm);
-}
-
-.text-center {
-  text-align: center;
 }
 
 .button {
