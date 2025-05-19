@@ -1,3 +1,7 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+
 :root {
   color-scheme: light dark;
 
@@ -26,7 +30,7 @@
 }
 
 h1, h2, h3, h4, h5, h6, p {
-  margin-bottom: 0.75rem;
+  margin: 0 0 0.75rem;
 }
 
 body {
@@ -36,5 +40,4 @@ body {
   font-size: var(--text-base);
   line-height: var(--lh-base);
   letter-spacing: var(--ls-base);
-  text-align: left;
 }
