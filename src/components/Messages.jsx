@@ -15,8 +15,9 @@ function Messages() {
   const [phase, setPhase] = useState("intro1");
 
   const introMessages = {
-    intro1: "Hello, welcome...",
-    intro2: "Well, since you're here...",
+    intro1: "Hi there, welcome!",
+    intro2: "Thanks for stopping by.",
+    intro3: "Since you're here...",
   };
 
   useEffect(() => {
@@ -46,7 +47,7 @@ function Messages() {
     if (!isVisible) return;
     let timeout;
 
-    if (phase === "intro1" || phase === "intro2") {
+    if (phase.startsWith("intro")) {
       const introMessage = introMessages[phase];
       if (charIndex < introMessage.length) {
         timeout = setTimeout(() => {
@@ -57,12 +58,15 @@ function Messages() {
         timeout = setTimeout(() => {
           setCharIndex(0);
           setCurrentMessage("");
+
           if (phase === "intro1") {
             setPhase("intro2");
+          } else if (phase === "intro2") {
+            setPhase("intro3");
           } else {
             setPhase("facts");
           }
-        }, 1500);
+        }, 3000);
       }
     }
 
