@@ -1,8 +1,8 @@
-import '../app.css';
+import '../App.css';
 import { useEffect, useState } from "react";
 import { getMessage } from "../api/facts";
 
-function Messages() {
+function Home() {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageIndex, setMessageIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -15,9 +15,9 @@ function Messages() {
   const [phase, setPhase] = useState("intro1");
 
   const introMessages = {
-    intro1: "Hi there, welcome!",
-    intro2: "Thanks for stopping by.",
-    intro3: "Since you're here...",
+    intro1: "Hey there, welcome!",
+    intro2: "You’ve landed here — among the vast galaxy of the internet, you’ve found this little star of a website.",
+    intro3: "Well, since you made it here...",
   };
 
   useEffect(() => {
@@ -128,4 +128,4 @@ function Messages() {
   );
 }
 
-export default Messages;
+export default Home;

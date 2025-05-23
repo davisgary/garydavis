@@ -1,4 +1,4 @@
-import '../app.css';
+import '../App.css';
 
 export default function NotFound() {
   return (

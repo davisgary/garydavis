@@ -1,9 +1,10 @@
 :root {
   color-scheme: light dark;
 
-  --color-main: #1b1b1b;
+  --color-main: #0a0a0a;
   --color-primary: #ffffff;
   --color-secondary: #dddddd;
+  --color-gradient: #00f4ff;
 
   --text-lg: 2.55rem;
   --text-base: 1.25rem;
@@ -11,13 +12,16 @@
   --lh-base: 1.65;
   --lh-sm: 1.05;
   --ls-base: -0.03em;
+  --opacity: 0.75;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     --color-main: #ffffff;
-    --color-primary: #1b1b1b;
+    --color-primary: #000000;
     --color-secondary: #3d3d3d;
+    --color-gradient: #14a9b1;
+    --opacity: 1;
   }
 }
 
@@ -35,6 +39,36 @@ body {
   font-size: var(--text-base);
   line-height: var(--lh-base);
   letter-spacing: var(--ls-base);
+}
+
+.gradient {
+  position: fixed;
+  bottom: 0;
+  left: -25vw;
+  width: 150vw;
+  height: 15vh;
+  background: radial-gradient(circle at center, var(--color-gradient), transparent);
+  opacity: var(--opacity);
+  filter: blur(100px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  background: var(--color-primary);
+  border-radius: 50%;
 }
 
 @font-face {

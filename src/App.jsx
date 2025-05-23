@@ -1,14 +1,18 @@
-import { Routes, Route } from 'react-router-dom'
-import Messages from './components/Messages'
-import NotFound from './pages/NotFound'
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
+import Background from './components/Background';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Messages />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  )
+    <>
+      <Background />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
+  );
 }
 
-export default App
+export default App;
