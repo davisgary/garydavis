@@ -1,6 +1,5 @@
 import '../App.css';
 import { useEffect, useState } from "react";
-import { getMessage } from "../api/facts";
 
 function Home() {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -35,9 +34,15 @@ function Home() {
 
   useEffect(() => {
     const fetchFacts = async () => {
-      let newFacts = await getMessage();
-      newFacts = newFacts.filter((fact) => !shownFacts.has(fact));
-      setFacts(newFacts);
+      try {
+        const res = await fetch('/.netlify/functions/facts');
+        if (!res.ok) throw new Error('Failed to fetch facts');
+        const newFacts = await res.json();
+        const filteredFacts = newFacts.filter((fact) => !shownFacts.has(fact));
+        setFacts(filteredFacts);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     fetchFacts();
@@ -98,17 +103,24 @@ function Home() {
         if (messageIndex + 1 < facts.length) {
           setMessageIndex((prev) => prev + 1);
         } else {
-          let newFacts = await getMessage();
-          newFacts = newFacts.filter((fact) => !shownFacts.has(fact));
+          try {
+            const res = await fetch('/.netlify/functions/facts');
+            if (!res.ok) throw new Error('Failed to fetch facts');
+            let newFacts = await res.json();
+            newFacts = newFacts.filter((fact) => !shownFacts.has(fact));
 
-          if (newFacts.length === 0) {
-            setShownFacts(new Set());
-            localStorage.removeItem("shownFacts");
-            newFacts = await getMessage();
+            if (newFacts.length === 0) {
+              setShownFacts(new Set());
+              localStorage.removeItem("shownFacts");
+              const resRetry = await fetch('/.netlify/functions/facts');
+              newFacts = await resRetry.json();
+            }
+
+            setFacts(newFacts);
+            setMessageIndex(0);
+          } catch (error) {
+            console.error(error);
           }
-
-          setFacts(newFacts);
-          setMessageIndex(0);
         }
 
         setCharIndex(0);
