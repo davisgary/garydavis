@@ -1,23 +1,25 @@
-import '../App.css';
 import { useEffect, useState } from "react";
+
+type IntroPhase = "intro1" | "intro2" | "intro3";
+type Phase = IntroPhase | "facts";
+
+const introMessages: Record<IntroPhase, string> = {
+  intro1: "Hey there, welcome!",
+  intro2: "You’ve landed here — among the vast galaxy of the internet, you’ve found this little star of a website.",
+  intro3: "Well, since you made it here...",
+};
 
 function Home() {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageIndex, setMessageIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
-  const [facts, setFacts] = useState([]);
+  const [facts, setFacts] = useState<string[]>([]);
   const [isVisible, setIsVisible] = useState(true);
-  const [shownFacts, setShownFacts] = useState(() => {
+  const [shownFacts, setShownFacts] = useState<Set<string>>(() => {
     const stored = localStorage.getItem("shownFacts");
     return stored ? new Set(JSON.parse(stored)) : new Set();
   });
-  const [phase, setPhase] = useState("intro1");
-
-  const introMessages = {
-    intro1: "Hey there, welcome!",
-    intro2: "You’ve landed here — among the vast galaxy of the internet, you’ve found this little star of a website.",
-    intro3: "Well, since you made it here...",
-  };
+  const [phase, setPhase] = useState<Phase>("intro1");
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -37,7 +39,7 @@ function Home() {
       try {
         const res = await fetch('/.netlify/functions/facts');
         if (!res.ok) throw new Error('Failed to fetch facts');
-        const newFacts = await res.json();
+        const newFacts: string[] = await res.json();
         const filteredFacts = newFacts.filter((fact) => !shownFacts.has(fact));
         setFacts(filteredFacts);
       } catch (error) {
@@ -46,14 +48,15 @@ function Home() {
     };
 
     fetchFacts();
-  }, []);
+  }, [shownFacts]);
 
   useEffect(() => {
     if (!isVisible) return;
-    let timeout;
+    let timeout: ReturnType<typeof setTimeout>;
 
     if (phase.startsWith("intro")) {
-      const introMessage = introMessages[phase];
+      const introPhase = phase as IntroPhase;
+      const introMessage = introMessages[introPhase];
       if (charIndex < introMessage.length) {
         timeout = setTimeout(() => {
           setCurrentMessage((prev) => prev + introMessage[charIndex]);
@@ -80,7 +83,7 @@ function Home() {
 
   useEffect(() => {
     if (!isVisible || phase !== "facts" || facts.length === 0) return;
-    let typingTimeout;
+    let typingTimeout: ReturnType<typeof setTimeout>;
 
     const currentFact = facts[messageIndex];
 
@@ -106,7 +109,7 @@ function Home() {
           try {
             const res = await fetch('/.netlify/functions/facts');
             if (!res.ok) throw new Error('Failed to fetch facts');
-            let newFacts = await res.json();
+            let newFacts: string[] = await res.json();
             newFacts = newFacts.filter((fact) => !shownFacts.has(fact));
 
             if (newFacts.length === 0) {
@@ -132,8 +135,8 @@ function Home() {
   }, [charIndex, messageIndex, facts, isVisible, shownFacts, phase]);
 
   return (
-    <div className="flex-center">
-      <div className="container">
+    <div className="flex justify-center items-center px-8">
+      <div className="w-full max-w-2xl text-xl py-40">
         {currentMessage}
       </div>
     </div>

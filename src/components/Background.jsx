@@ -50,12 +50,19 @@ export default function Background() {
 
   return (
     <>
-      <div className="gradient" />
-      <div className="stars-container">
+      <div
+        className="fixed bottom-0 left-[-25vw] w-[150vw] h-[15vh] z-[1] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle at center, hsl(var(--accent)), transparent)',
+          opacity: 0.6,
+          filter: 'blur(100px)',
+        }}
+      />
+      <div className="fixed top-0 left-0 w-screen h-screen overflow-hidden pointer-events-none z-0">
         {stars.map(({ id, top, left, size, opacity }) => (
           <div
             key={id}
-            className="star"
+            className="absolute rounded-full bg-primary"
             style={{
               top: `${top}vh`,
               left: `${left}vw`,

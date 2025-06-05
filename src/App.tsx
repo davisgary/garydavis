@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Background from './components/Background';
 
-function App() {
+const App = () => {
   return (
     <>
       <Background />
@@ -13,6 +13,6 @@ function App() {
       </Routes>
     </>
   );
-}
+};
 
 export default App;
