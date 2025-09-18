@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { FaGithub, FaFacebookF, FaXTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 
 type IntroPhase = "intro1" | "intro2" | "intro3";
 type Phase = IntroPhase | "facts";
 
 const introMessages: Record<IntroPhase, string> = {
   intro1: "Hey there, welcome!",
-  intro2: "You’ve landed here — among the vast galaxy of the internet, you’ve found this little star of a website.",
+  intro2: "You've landed here. Among the vast galaxy of the internet, you've found this little star of a website.",
   intro3: "Well, since you made it here...",
 };
 
@@ -135,10 +136,27 @@ function Home() {
   }, [charIndex, messageIndex, facts, isVisible, shownFacts, phase]);
 
   return (
-    <div className="flex justify-center items-center px-8">
-      <div className="w-full max-w-2xl text-xl py-40">
-        {currentMessage}
+    <div className="relative w-full h-screen">
+      <div className="flex justify-center items-center px-8">
+        <div className="w-full max-w-2xl text-xl py-40">
+          {currentMessage}
+        </div>
       </div>
+      <a href="https://github.com/davisgary" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="absolute left-8" style={{ top: '47%', left: '5%' }}>
+        <FaGithub size={11} className="text-muted-foreground hover:scale-110 transition-transform pointer-events-auto" />
+      </a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="absolute left-8" style={{ top: '30%', left: '25%' }}>
+        <FaFacebookF size={11} className="hidden text-muted-foreground hover:scale-110 transition-transform pointer-events-auto" />
+      </a>
+      <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="absolute left-1/2 -translate-x-1/2" style={{ top: '30%' }}>
+        <FaLinkedinIn size={11} className="hidden text-muted-foreground hover:scale-110 transition-transform pointer-events-auto" />
+      </a>
+      <a href="https://instagram.com/garydaviis" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="absolute right-8" style={{ top: '5%', right: '26%' }}>
+        <FaInstagram size={11} className="text-muted-foreground hover:scale-110 transition-transform pointer-events-auto" />
+      </a>
+      <a href="https://x.com/garydaviis" target="_blank" rel="noopener noreferrer" aria-label="X" className="absolute right-8" style={{ top: '11%' }}>
+        <FaXTwitter size={11} className="text-muted-foreground hover:scale-110 transition-transform pointer-events-auto" />
+      </a>
     </div>
   );
 }
